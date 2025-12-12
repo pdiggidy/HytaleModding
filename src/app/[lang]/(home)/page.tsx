@@ -12,7 +12,7 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { localizeHref } from "@/lib/locale";
 import Link from "next/link";
@@ -32,7 +32,8 @@ interface CarouselItem {
   link: string;
 }
 
-export default function HomePage({ params }: { params: { lang?: string } }) {
+export default function HomePage({ params }: { params: Promise<{ lang?: string }> }) {
+  const resolvedParams = use(params);
   const [isMobile, setIsMobile] = useState(false);
   const carouselItems: CarouselItem[] = [
     {
@@ -94,7 +95,7 @@ export default function HomePage({ params }: { params: { lang?: string } }) {
           </h2>
           <div className="flex flex-wrap gap-4">
             <Button asChild>
-              <Link href={localizeHref("/docs", params.lang?.toString())}>
+              <Link href={localizeHref("/docs", resolvedParams.lang?.toString())}>
                 <BookIcon /> Docs
               </Link>
             </Button>
