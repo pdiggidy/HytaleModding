@@ -87,8 +87,8 @@ export default function HomePage() {
     <div className="relative flex flex-1 overflow-hidden">
       <GitInfoButton />
       <Spotlight />
-      <div className="container mx-auto flex flex-1 flex-col gap-8 px-12 py-8 lg:flex-row lg:items-center lg:justify-between lg:py-0">
-        <div className="w-lg space-y-6 max-lg:py-32 lg:max-w-2xl">
+      <div className="container mx-auto flex flex-1 flex-col gap-8 px-12 py-8 lg:flex-row items-center lg:justify-between lg:py-0">
+        <div className="max-lg:max-w-lg space-y-6 max-lg:py-32 max-w-xl max-lg:text-center">
           <h1 className="text-4xl font-semibold text-balance">
             {messages.home.title}
             <FlipWords words={messages.home.flipwords} />
@@ -96,7 +96,7 @@ export default function HomePage() {
           <h2 className="text-muted-foreground text-lg text-balance">
             {messages.home.description}
           </h2>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 max-lg:justify-center">
             <Button asChild>
               <Link href={localizeHref("/docs", params.lang?.toString())}>
                 <BookIcon /> {messages.home.documentation}
@@ -106,7 +106,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="relative w-full flex-1 lg:max-w-2xl lg:p-8">
+        <div className="relative w-full flex-1 lg:max-w-2xl">
           <Carousel
             opts={{
               align: "center",
@@ -121,7 +121,7 @@ export default function HomePage() {
           >
             <CarouselContent className="-mt-1 h-96">
               {carouselItems.map((item, index) => (
-                <CarouselItem key={index} className="pt-1 md:basis-2">
+                <CarouselItem key={index} className="pt-1 lg:basis-2">
                   <div className="p-1">
                     <Card className="relative overflow-hidden">
                       <CardContent className="flex h-72 items-center justify-center p-6">
