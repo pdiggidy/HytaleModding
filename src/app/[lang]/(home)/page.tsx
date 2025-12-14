@@ -48,12 +48,6 @@ export default function HomePage() {
       link: "https://x.com/SeyagerYT"
     },
     {
-      title: "Dragonfly Mount",
-      author: "by Nicolas | Tourne_Vis",
-      image: DragonFlyMount,
-      link: "https://x.com/TourneVis_MC",
-    },
-    {
       title: "[WIP] Hylamity: Wulfrum Prosthesis",
       author: "by alder_",
       image: WulfrumProsthesis,
