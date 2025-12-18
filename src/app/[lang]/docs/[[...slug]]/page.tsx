@@ -4,7 +4,6 @@ import {
   DocsDescription,
   DocsPage,
   DocsTitle,
-  PageLastUpdate
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/mdx-components";
@@ -12,7 +11,6 @@ import type { Metadata } from "next";
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import { branch } from "@/git-info.json";
 import { ViewTransition } from "react";
-import { getGithubLastEdit } from 'fumadocs-core/content/github';
 
 export default async function Page(
   props: PageProps<"/[lang]/docs/[[...slug]]">,
@@ -22,11 +20,6 @@ export default async function Page(
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const lastUpdatedTime = await getGithubLastEdit({
-    owner: "HytaleModding",
-    repo: "site",
-    path: `content/docs/${page.path}`,
-  })
 
   return (
     <ViewTransition enter="docs-transition" exit="docs-transition">
@@ -50,9 +43,6 @@ export default async function Page(
             })}
           />
         </DocsBody>
-        {lastUpdatedTime && (
-          <PageLastUpdate date={lastUpdatedTime} />
-        )}
       </DocsPage>
     </ViewTransition>
   );
