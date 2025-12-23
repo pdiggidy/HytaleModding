@@ -264,7 +264,7 @@ export default function HomePage() {
             </h2>
             </div>
 
-          <div className="flex flex-wrap gap-3 md:gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild>
               <Link href={localizeHref("/docs", params.lang?.toString())}>
                 <BookIcon /> {messages.home.documentation}
@@ -285,7 +285,7 @@ export default function HomePage() {
         </div>
       </div>
       
-      <div className="w-full mt-auto mb-8 md:mb-4 pb-16 pt-12 md:pt-4">
+      <div className="w-full mt-auto mb-8 md:mb-4 pb-16 pt-4">
         <Marquee className="h-64 w-full">
           <MarqueeFade side="left" className="w-12" />
           <MarqueeContent speed={50} pauseOnHover autoFill={false}>
