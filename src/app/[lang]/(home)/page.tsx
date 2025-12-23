@@ -4,7 +4,12 @@ import { FlipWords } from "@/components/ui/flip-words";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from "@/components/ui/shadcn-io/marquee";
+import {
+  Marquee,
+  MarqueeContent,
+  MarqueeFade,
+  MarqueeItem,
+} from "@/components/ui/shadcn-io/marquee";
 import Image, { StaticImageData } from "next/image";
 import { localizeHref } from "@/lib/locale";
 import Link from "next/link";
@@ -22,7 +27,7 @@ import { DiscordButton } from "./discord-button";
 import { SponsorButton } from "./support-button";
 import { GitInfoButton } from "@/components/git-info-button";
 
-type ProjectType = 'art' | 'website' | 'server' | 'mod';
+type ProjectType = "art" | "website" | "server" | "mod";
 
 interface ShowcaseItem {
   title: string;
@@ -39,33 +44,37 @@ const ShowcaseCard = ({ item }: { item: ShowcaseItem }) => {
   const hasImage = item.image;
   const hasLogo = item.logo;
   const hasBanner = item.banner;
-  
+
   return (
-    <Card className="relative overflow-hidden w-96 h-64">
+    <Card className="relative h-64 w-96 overflow-hidden">
       <CardContent className="flex h-full items-center justify-center p-0">
         {hasImage ? (
           <>
             <div className="from-card absolute z-20 flex size-full items-end bg-linear-to-t from-15% to-transparent to-30% p-6">
               <div className="flex flex-1 flex-col">
-                <h3 className="z-20 text-xl font-bold line-clamp-2">
+                <h3 className="z-20 line-clamp-2 text-xl font-bold">
                   {item.title}
                 </h3>
-                <p className="text-muted-foreground text-base z-20">
+                <p className="text-muted-foreground z-20 text-base">
                   {item.author}
                 </p>
                 {item.description && (
-                  <p className="text-muted-foreground text-sm z-20 mt-1 line-clamp-2">
+                  <p className="text-muted-foreground z-20 mt-1 line-clamp-2 text-sm">
                     {item.description}
                   </p>
                 )}
               </div>
-              <Button size="default" asChild className="ml-3 bg-background/90 text-foreground hover:bg-background">
+              <Button
+                size="default"
+                asChild
+                className="bg-background/90 text-foreground hover:bg-background ml-3"
+              >
                 <Link
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  <ExternalLinkIcon className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -93,31 +102,35 @@ const ShowcaseCard = ({ item }: { item: ShowcaseItem }) => {
                     <Image
                       src={hasLogo}
                       alt={`${item.title} logo`}
-                      className="h-8 w-8 object-contain rounded"
+                      className="h-8 w-8 rounded object-contain"
                       width={32}
                       height={32}
                     />
                   </div>
                 )}
-                <h3 className="z-20 text-xl font-bold line-clamp-2">
+                <h3 className="z-20 line-clamp-2 text-xl font-bold">
                   {item.title}
                 </h3>
-                <p className="text-muted-foreground text-base z-20">
+                <p className="text-muted-foreground z-20 text-base">
                   {item.author}
                 </p>
                 {item.description && (
-                  <p className="text-muted-foreground text-sm z-20 mt-1 line-clamp-2">
+                  <p className="text-muted-foreground z-20 mt-1 line-clamp-2 text-sm">
                     {item.description}
                   </p>
                 )}
               </div>
-              <Button size="default" asChild className="ml-3 bg-background/90 text-foreground hover:bg-background">
+              <Button
+                size="default"
+                asChild
+                className="bg-background/90 text-foreground hover:bg-background ml-3"
+              >
                 <Link
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLinkIcon className="w-4 h-4" />
+                  <ExternalLinkIcon className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
@@ -130,26 +143,26 @@ const ShowcaseCard = ({ item }: { item: ShowcaseItem }) => {
           </>
         ) : (
           <div className="flex h-full w-full flex-col justify-between p-6">
-            <div className="flex-1 flex flex-col justify-center">
+            <div className="flex flex-1 flex-col justify-center">
               {hasLogo && (
-                <div className="flex justify-center mb-4">
+                <div className="mb-4 flex justify-center">
                   <Image
                     src={hasLogo}
                     alt={`${item.title} logo`}
-                    className="h-16 w-16 object-contain rounded-lg"
+                    className="h-16 w-16 rounded-lg object-contain"
                     width={64}
                     height={64}
                   />
                 </div>
               )}
-              <h3 className="text-xl font-bold line-clamp-2 mb-2 text-center">
+              <h3 className="mb-2 line-clamp-2 text-center text-xl font-bold">
                 {item.title}
               </h3>
-              <p className="text-muted-foreground text-base mb-3 text-center">
+              <p className="text-muted-foreground mb-3 text-center text-base">
                 {item.author}
               </p>
               {item.description && (
-                <p className="text-muted-foreground text-sm line-clamp-4 text-center">
+                <p className="text-muted-foreground line-clamp-4 text-center text-sm">
                   {item.description}
                 </p>
               )}
@@ -161,7 +174,7 @@ const ShowcaseCard = ({ item }: { item: ShowcaseItem }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLinkIcon className="w-4 h-4 mr-2" />
+                  <ExternalLinkIcon className="mr-2 h-4 w-4" />
                   Visit
                 </Link>
               </Button>
@@ -176,7 +189,7 @@ const ShowcaseCard = ({ item }: { item: ShowcaseItem }) => {
 export default function HomePage() {
   const params = useParams();
   const messages = useMessages();
-  
+
   const showcaseItems: ShowcaseItem[] = [
     // Art projects
     {
@@ -184,45 +197,46 @@ export default function HomePage() {
       author: "by seyager",
       image: ElectricMotor,
       link: "https://x.com/SeyagerYT",
-      type: 'art'
+      type: "art",
     },
     {
       title: "[WIP] Hylamity: Wulfrum Prosthesis",
       author: "by alder_",
       image: WulfrumProsthesis,
       link: "https://discord.gg/f2fMKYnRqR",
-      type: 'art'
+      type: "art",
     },
     {
       title: "[WIP] Soundscape: Melodium Chunk",
       author: "by 44Hydras",
       image: Melodium,
       link: "https://discord.com/users/197065442479702016",
-      type: 'art'
+      type: "art",
     },
     {
       title: "Gale Wivern",
       author: "by Nicolas | Tourne_Vis",
       image: GaleWivern,
       link: "https://x.com/TourneVis_MC",
-      type: 'art'
+      type: "art",
     },
     {
       title: "[WIP] Hylamity: Wulfrum Armor",
       author: "by alder_",
       image: WulfrumArmor,
       link: "https://discord.gg/f2fMKYnRqR",
-      type: 'art'
+      type: "art",
     },
     {
       title: "Hyfable Server Network",
       author: "by Brad",
       logo: HyFableLogo,
       banner: HyFableBanner,
-      type: 'server',
-      description: "Hyfable is a Day 1 server preparing for Hytale release! Join us today!",
-      link: "https://hyfable.com"
-    }
+      type: "server",
+      description:
+        "Hyfable is a Day 1 server preparing for Hytale release! Join us today!",
+      link: "https://hyfable.com",
+    },
   ];
 
   const shuffledItems = [...showcaseItems].sort(() => Math.random() - 0.5);
@@ -230,10 +244,10 @@ export default function HomePage() {
 
   return (
     <div className="relative flex flex-1 flex-col overflow-hidden">
+      <Spotlight />
       <GitInfoButton />
-      <Spotlight />      
       {/* <div className="absolute top-4 right-4 z-10 max-w-xs">
-        <p className="text-right text-xs text-muted-foreground mb-2">
+        <p className="text-muted-foreground mb-2 text-right text-xs">
           Proudly sponsored by
         </p>
         <div className="flex justify-end">
@@ -246,23 +260,21 @@ export default function HomePage() {
           />
         </div>
       </div> */}
-      
-      <div className="container mx-auto flex flex-col items-center px-4 md:px-12 py-8 flex-1 justify-center">
-        <div className="max-w-5xl space-y-8 text-center pt-16 md:pt-0">
-            <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-semibold text-balance">
+
+      <div className="container mx-auto flex flex-1 flex-col items-center justify-center px-4 py-8 md:px-12">
+        <div className="max-w-5xl space-y-8 pt-16 text-center md:pt-0">
+          <div className="space-y-6">
+            <h1 className="text-4xl font-semibold text-balance md:text-5xl">
               <div>{messages.home.title.split("{flipwords}")[0]}</div>
               <div>
                 <FlipWords words={messages.home.flipwords} />
               </div>
-              <div>
-              {messages.home.title.split("{flipwords}")[1]}
-              </div>
+              <div>{messages.home.title.split("{flipwords}")[1]}</div>
             </h1>
-            <h2 className="text-muted-foreground text-lg md:text-xl text-balance">
+            <h2 className="text-muted-foreground text-lg text-balance md:text-xl">
               {messages.home.description}
             </h2>
-            </div>
+          </div>
 
           <div className="flex flex-wrap justify-center gap-4">
             <div className="flex flex-wrap justify-center gap-4">
@@ -288,8 +300,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      
-      <div className="w-full mt-auto mb-8 md:mb-4 pb-16 pt-4">
+
+      <div className="mt-auto mb-8 w-full py-16 md:mb-4">
         <Marquee className="h-64 w-full">
           <MarqueeFade side="left" className="w-12" />
           <MarqueeContent speed={50} pauseOnHover autoFill={false}>
