@@ -233,16 +233,6 @@ export default function HomePage() {
       link: "https://discord.gg/f2fMKYnRqR",
       type: "art",
     },
-    {
-      title: "Hyfable Server Network",
-      author: "by Brad",
-      logo: HyFableLogo,
-      banner: HyFableBanner,
-      type: "server",
-      description:
-        "Hyfable is a Day 1 server preparing for Hytale release! Join us today!",
-      link: "https://hyfable.com",
-    },
   ];
 
   const shuffledItems = [...showcaseItems].sort(() => Math.random() - 0.5);
