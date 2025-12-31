@@ -54,7 +54,11 @@ export async function getSponsors(): Promise<Sponsor[]> {
       (member: any) => member.role === "BACKER" && member.isActive === true,
     );
 
-    return activeBackers.map((member: any) => ({
+    const uniqueBackers = activeBackers.filter((member: any, index: number, array: any[]) =>
+      index === array.findIndex((m: any) => m.MemberId === member.MemberId)
+    );
+
+    return uniqueBackers.map((member: any) => ({
       ...member,
       image:
         member.image ||

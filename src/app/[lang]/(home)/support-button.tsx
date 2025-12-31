@@ -12,7 +12,6 @@ import { getSponsors } from "./actions";
 import { useMessages } from "@/lib/hooks/useMessages";
 import Link from "next/link";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { localizeHref } from "../../../lib/locale";
 import { useParams } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Sponsor } from "@/lib/types/sponsor";
