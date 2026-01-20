@@ -1,5 +1,5 @@
 ---
-title: "Custom Item and Interaction"
+title: "Create Custom Item and Interaction"
 description: "Learn how you can create a custom item interactions for your custom items"
 authors:
     - name: "Marcel-TO"
@@ -212,5 +212,110 @@ public class SendMessageInteraction extends SimpleInstantInteraction {
 }
 ```
 
+## Advanced Interaction Features
+Interactions are highly flexible. Since they are nested, you can combine multiple interactions to create complex behaviors. For example, you could have an interaction that first checks certain conditions (like player health or environment) before executing another interaction. Afterwards, you can chain interactions to create a sequence of actions triggered by a single item use. Or you could create interactions that need to be charged over time before they activate.
+
+To get your creative juices flowing, here are some examples of interaction types:
+
+1. **Condition**: Check specific conditions before allowing the interaction to proceed (e.g., only if player crouches):
+```json
+{
+    "Type": "Condition",
+    "Crouching": true, // only allow if player is crouching example
+    "Failed": "Block_Secondary",
+    "Next": {
+        ... // next interaction to run if condition is met
+    }
+}
+```
+
+2. **Charge**: Require the player to hold the interaction for a certain duration before it activates (This behavior for example is called if the player eats food):
+```json
+{
+    "Type": "Charging",
+    "FailsOnDamage": true, // cancel if player takes damage
+    "HorizontalSpeedMultiplier": 0.4, // reduce speed while charging
+    "Next": {
+        "2.5" : {  // interaction after 2.5 seconds of charging
+            ... // interaction to run after charge time
+        },
+    },
+    "Failed": {
+        ... // interaction to run if charging fails
+    }
+}
+```
+
+3. **Serial**: Execute a series of interactions in order, one after the other:
+```json
+{
+    "Type": "Serial",
+    "Interactions": [
+        {
+            ... // first interaction
+        },
+        {
+            ... // second interaction
+        }
+    ]
+}
+```
+
+4. **Replace**: Replace the default behavior of the item (e.g., inherited from parent) with a custom interaction:
+```json
+{
+    "Type": "Replace",
+    "Var": "Item_Default_Interaction",
+    "DefaultValue": {
+        "Interactions": [
+            {
+                ... // default interaction that replaces the original
+            }
+        ]
+    }
+}
+```
+
+5. **Simple**: Simple Interaction that performs a single action, such as sending a message or applying an effect:
+```json
+{
+    "Type": "Simple"
+}
+```
+
+### Advanced Interaction Example
+Here is an example of a more complex interaction that requires the player to crouch and charge for 2.5 seconds before executing the custom action:
+
+```json
+{
+    ... // existing item properties from above
+    "Interactions": {
+        "Secondary": {
+            "Interactions": [
+                {
+                    "Type": "Condition",
+                    "Crouching": true,
+                    "Failed": "Block_Secondary",
+                    "Next": {
+                        "Type": "Charging",
+                        "FailsOnDamage": true,
+                        "HorizontalSpeedMultiplier": 0.5,
+                        "Next": {
+                            "2.5": {
+                                "Type": "my_custom_interaction_id",
+                            }
+                        },
+                        "Failed": {
+                            "Type": "Simple"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+
 ## Conclusion
-You have now created a custom item with a unique interaction in your Hytale plugin. You can expand upon this foundation to create more complex items and interactions as needed for your mod.
+You have now created a custom item with a unique interaction in your Hytale plugin. You can expand upon this foundation to create more complex items and interactions as needed for your mod. Keep experimenting, chain interactions, and explore the possibilities to enhance gameplay!
